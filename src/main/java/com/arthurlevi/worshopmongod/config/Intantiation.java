@@ -2,6 +2,7 @@ package com.arthurlevi.worshopmongod.config;
 
 import com.arthurlevi.worshopmongod.domain.Post;
 import com.arthurlevi.worshopmongod.domain.User;
+import com.arthurlevi.worshopmongod.dto.AuthorDTO;
 import com.arthurlevi.worshopmongod.repositories.PostRepository;
 import com.arthurlevi.worshopmongod.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,9 +34,12 @@ public class Intantiation implements CommandLineRunner {
         User alex = new User(null, "Alex Green", "alex@gmail.com");
         User bob = new User(null, "Bob Grey", "bob@gmail.com");
 
-        Post post1 = new Post(null,sdf.parse("21/03/2018"),"Partiu viajar","Indo para Russas.A braços!!!",maria);
-        Post post2 = new Post(null,sdf.parse("01/06/2018"),"Bom dai a todos!!!","Hoje é um dia feliz!!!",maria);
         userRepository.saveAll(Arrays.asList(maria,alex,bob));
+
+        AuthorDTO authorMaria = new AuthorDTO(maria);
+
+        Post post1 = new Post(null,sdf.parse("21/03/2018"),"Partiu viajar","Indo para Russas.A braços!!!",authorMaria);
+        Post post2 = new Post(null,sdf.parse("01/06/2018"),"Bom dai a todos!!!","Hoje é um dia feliz!!!",authorMaria);
         postRepository.saveAll(Arrays.asList(post1,post2));
     }
 }
