@@ -1,10 +1,13 @@
 package com.arthurlevi.worshopmongod.domain;
 
 import com.arthurlevi.worshopmongod.dto.AuthorDTO;
+import com.arthurlevi.worshopmongod.dto.CommentDTO;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Document
@@ -16,6 +19,8 @@ public class Post {
     private Date date;
     private String title;
     private String body;
+
+    private List<CommentDTO> comments = new ArrayList<>();
 
     private AuthorDTO author;
 
@@ -64,6 +69,14 @@ public class Post {
 
     public void setAuthor(AuthorDTO author) {
         this.author = author;
+    }
+
+    public List<CommentDTO> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<CommentDTO> comments) {
+        this.comments = comments;
     }
 
     @Override
