@@ -1,5 +1,6 @@
 package com.arthurlevi.worshopmongod.resources;
 
+import com.arthurlevi.worshopmongod.domain.Post;
 import com.arthurlevi.worshopmongod.domain.User;
 import com.arthurlevi.worshopmongod.dto.UserDTO;
 import com.arthurlevi.worshopmongod.services.UserService;
@@ -56,6 +57,11 @@ public class UserResource {
         user.setId(id);
         user = userService.update(user);
         return ResponseEntity.noContent().build();
+    }
+    @RequestMapping(value = "{id}/posts", method = RequestMethod.GET)
+    public ResponseEntity<List<Post>> findPostById(@PathVariable String id){
+        User user = userService.findById(id);
+        return ResponseEntity.ok().body(user.getPosts());
     }
 }
 
